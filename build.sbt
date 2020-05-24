@@ -13,6 +13,7 @@ val scalaMock = "org.scalamock" %% "scalamock" % "4.4.0" % Test
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.8" % "test,it"
 val akkaTestKit = "com.typesafe.akka" %% "akka-testkit" % "2.5.26" % "test,it"
 val akkaHttpTestKit = "com.typesafe.akka" %% "akka-http-testkit" % "10.1.11" % "test,it"
+val scalatestRedis = "com.github.sebruck" %% "scalatest-embedded-redis" % "0.4.0"
 
 libraryDependencies ++= Seq(
   akkaHttp,
@@ -26,5 +27,6 @@ libraryDependencies ++= Seq(
   scalaTest,
   akkaTestKit,
   akkaHttpTestKit,
-  scalaMock
+  scalaMock,
+  scalatestRedis
 )

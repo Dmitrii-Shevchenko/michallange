@@ -6,7 +6,7 @@ import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Route
 import cats.data.Validated.{Invalid, Valid}
 import michallenge.repositories.entity.UserRequest
-import michallenge.repositories.validator.{FormValidatorNec, FormValidatorNel}
+import michallenge.repositories.validator.FormValidatorNel
 import de.heikoseeberger.akkahttpplayjson.PlayJsonSupport._
 import play.api.libs.json.Json
 
@@ -44,7 +44,7 @@ class UserController(userService: UserService)(
           entity(as[UserRequest]) { request =>
             FormValidatorNel.validateForm(request) match {
               case Valid(validatedRequest) =>
-                onComplete(userService.updateUser(id, validatedRequest)) {
+                onComplete(userService.updateUser(validatedRequest, id)) {
                   case Success(_) => complete(StatusCodes.NoContent)
                   case _          => complete(StatusCodes.BadRequest)
                 }

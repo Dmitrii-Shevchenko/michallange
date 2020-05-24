@@ -10,7 +10,7 @@ import com.redis.serialization.Parse.Implicits._
 
 class UserRepository(redisClient: RedisClient)(
   implicit executionContext: ExecutionContext
-) {
+) extends ProfileRepository {
   def addUser(user: User): Future[Boolean] = {
     Future(redisClient.set(user.id, Serializer.serialize(user)))
   }
